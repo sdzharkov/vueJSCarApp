@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     car_model: function () {
-      if (this.car_model.trim().length) {
+      if ((this.car_year.length > 3 && this.car_make.length) || this.car_make.length || this.car_model.length) {
         this.lookupnewCar()
       } else {
         this.clearCar()
@@ -42,7 +42,7 @@ export default {
   methods: {
     lookupnewCar: _.debounce(function () {
       var inst = this
-      axios.get('http://localhost:8000/tripapp/carsApi/?car_make=Honda&car_year=2000')
+      axios.get('http://localhost:8000/tripapp/carsApi/?car_make=' + this.car_make + '&car_year=' + this.car_year + '&car_model=' + this.car_model)
         .then(function (response) {
           console.log(response.data)
           inst.$set(inst, 'cars', response.data)
