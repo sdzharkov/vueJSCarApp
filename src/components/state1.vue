@@ -5,7 +5,7 @@
     <input type='text' class='form-control' placeholder='Enter Model:' v-model='car_model'>
     <button> Next State </button>
     <ul>
-      <li v-for="car in cars" v-bind="car">
+      <li v-for="car in cars" v-bind="car" :key="car.id">
         {{car.car_make}}
         {{car.car_model}}
         {{car.car_highway_mpg}}
@@ -32,7 +32,7 @@ export default {
   },
   watch: {
     car_model: function () {
-      if (this.car_model.length > 0) {
+      if (this.car_model.trim().length) {
         this.lookupnewCar()
       } else {
         this.clearCar()
@@ -55,7 +55,10 @@ export default {
     }, 500),
     clearCar: function () {
       // inst.$set(inst, 'cars', [])
-      this.$remove('cars')
+      this.$set(this, 'cars', [])
+      // for (var i = 0; i < this.cars.length * 2; i++) {
+      //   this.cars.splice(this.cars[i], 1)
+      // }
     }
   }
 }
