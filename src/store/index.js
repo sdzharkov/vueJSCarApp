@@ -8,7 +8,7 @@ const store = new Vuex.Store({
     vehicle: {},
     src: null,
     dest: null,
-    avg_gas: null,
+    avgGas: null,
     lists: {
       passengers: []
             // activeType: null,
@@ -69,14 +69,15 @@ const store = new Vuex.Store({
     SET_DEST: (state, { dest }) => {
       state.dest = dest
     },
-    SET_AVG_GAS: (state, { avg_gas }) => {
-      state.avg_gas = avg_gas
+    SET_AVG_GAS: (state, { avgGas }) => {
+      state.avg_gas = avgGas
     },
     SET_PASSENGERS: (state, { passengers }) => {
       passengers.forEach(passenger => {
         if (passenger) {
           Vue.set(state.passengers, passenger)
         }
+      })
     }
     // SET_ACTIVE_TYPE: (state, { type }) => {
     //   state.activeType = type
