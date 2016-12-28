@@ -2,10 +2,10 @@
   <div id="app">
     <img src="./assets/logo.png">
     <div class="Center-Container is-Inline">
-    <div class="Center-Block">
-        <state1></state1>
+      <div class="Center-Block">
+          <state1></state1>
+      </div>
     </div>
-  </div>
   </div>
 </template>
 
