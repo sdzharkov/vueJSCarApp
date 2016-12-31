@@ -8,6 +8,7 @@
       :data="cars"
       :columns="gridColumns"
       :filter-key="searchQuery">
+
     </demo-grid>
   </div>
 </template>
@@ -29,13 +30,16 @@ export default {
       car_make: '',
       car_model: '',
       cars: [],
-      gridColumns: ['car_year', 'car_make', 'car_model', 'car_cylinder', 'car_drive', 'fuel']
-      // searchQuery: ''
+      gridColumns: ['car_year', 'car_make', 'car_model', 'car_cylinder', 'car_drive', 'fuel'],
+      searchQuery: ''
     }
   },
   watch: {
     car_model: function () {
-      if ((this.car_year.length > 3 && this.car_make.length) || this.car_make.length || this.car_model.length) {
+      if (this.car_year.length > 3 && this.car_make.length && this.car_model.length === 0) {
+        this.lookupnewCar()
+      }
+      if (this.car_make.length || this.car_model.length) {
         this.lookupnewCar()
       } else {
         this.clearCar()

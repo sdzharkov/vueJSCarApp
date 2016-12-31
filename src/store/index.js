@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    vehicle: {},
+    vehicle: null,
     src: null,
     dest: null,
     avgGas: null,
@@ -60,7 +60,7 @@ const store = new Vuex.Store({
 
   mutations: {
 
-    SET_VEHICLE: (state, { vehicle }) => {
+    SET_VEHICLE: (state, vehicle) => {
       state.vehicle = vehicle
     },
     SET_SRC: (state, { src }) => {
