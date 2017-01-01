@@ -113,6 +113,10 @@ export default {
     opacity: 1;
   }
 
+  tr:hover {
+    background: yellow;
+  }
+
   .arrow {
     display: inline-block;
     vertical-align: middle;

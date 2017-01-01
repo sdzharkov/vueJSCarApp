@@ -30,7 +30,9 @@ export default {
       car_make: '',
       car_model: '',
       cars: [],
-      gridColumns: ['car_year', 'car_make', 'car_model', 'car_cylinder', 'car_drive', 'fuel'],
+      // gridColumns: ['car_year', 'car_make', 'car_model', 'car_cylinder', 'car_drive', 'fuel'],
+      gridColumns: ['car_model', 'car_cylinder', 'car_drive', 'fuel'],
+
       searchQuery: ''
     }
   },

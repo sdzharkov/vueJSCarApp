@@ -125,4 +125,7 @@ a {
 .component-fade-enter, .component-fade-leave-active {
   opacity: 0;
 }
+.Center-Block {
+  display: inline-block;
+}
 </style>

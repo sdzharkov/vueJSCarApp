@@ -1,19 +1,51 @@
 <template>
-  <iframe
-    width="450"
-    height="250"
-    frameborder="0" style="border:0"
-    src="https://www.google.com/maps/embed/v1/directions
-  ?key=AIzaSyBMSi1KFmkp-dto-D_21QPPkDvfaeE7l0w
-  &origin=Oslo+Norway
-  &destination=Telemark+Norway
-  &avoid=tolls|highways" allowfullscreen>
-  </iframe>
+  <div class="state2">
+    <input type='text' class='form-control' placeholder='Start Destination:' v-model='src'>
+    <input type='text' class='form-control' placeholder='End Destination:' v-model='dest'>
+    <maps
+      :data1 = 'src'
+      :data2 = 'dest'>
+    </maps>
+  </div>
 </template>
 
 <script>
-export default {
+import maps from './maps'
+import axios from 'axios'
+import lodash from 'lodash'
+var _ = lodash
 
+export default {
+  components: {
+    maps
+  },
+  data () {
+    return {
+      src: '',
+      dest: ''
+    }
+  },
+  watch: {
+    dest: function () {
+      if (this.src.length > 0 && this.dest.length > 0) {
+        console.log('working')
+        this.findDist()
+      }
+    }
+  },
+  methods: {
+    findDist: _.debounce(function () {
+      axios.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + this.src + '&destinations=' + this.dest + '&key=AIzaSyC-3u_V9XiFNAvMs2qnH5cIao42so_X968')
+        .then(function (response) {
+          console.log(response.data)
+        })
+        .catch(function (error) {
+          if (error) {
+            console.log(error)
+          }
+        })
+    }, 500)
+  }
 }
 </script>
 
