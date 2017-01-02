@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@google/maps": "^0.3.1",
-    "vue": "^2.1.0"
+    "markerclustererplus": "^2.1.4",
+    "vue": "^2.1.0",
+    "vue-google-maps": "^0.1.21",
+    "vue2-google-maps": "^0.4.10"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
