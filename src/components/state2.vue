@@ -33,11 +33,11 @@ export default {
         // this.findDist()
       }
     }
-  },
-  methods: {
-    init: function () {
-      this.$broadcast('MapsApiLoaded')
-    } // ,
+  } // ,
+  // methods: {
+  //   init: function () {
+  //     this.$broadcast('MapsApiLoaded')
+  //   }  ,
     // findDist: _.debounce(function () {
     //   axios.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + this.src + '&destinations=' + this.dest + '&key=AIzaSyC-3u_V9XiFNAvMs2qnH5cIao42so_X968')
     //     .then(function (response) {
@@ -49,7 +49,7 @@ export default {
     //       }
     //     })
     // }, 500)
-  }
+  // }
 }
 </script>
 
