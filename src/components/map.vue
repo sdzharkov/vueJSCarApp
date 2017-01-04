@@ -1,0 +1,52 @@
+<template>
+  <gmap-map 
+    :center="center"
+    :zoom="7">
+    <gmap-marker 
+      v-for="m in markers"
+      :position="m.position"
+      :clickable="true"
+      :draggable="true"
+      @click="center=m.position"
+    ></gmap-marker>
+  </gmap-map>
+</template>
+
+<script>
+// New in 0.4.0
+// import * as VueGoogleMaps from '../../node_modules/vue2-google-maps'
+// var Vue = require('vue')
+var VueGoogleMaps = require('vue2-google-maps')
+import Vue from 'vue'
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyBMSi1KFmkp-dto-D_21QPPkDvfaeE7l0w'
+    // libraries: 'places', //// If you need to use place input
+  }
+})
+
+export default {
+  props: {
+    data1: String,
+    data2: String
+  },
+  data () {
+    return {
+      center: {lat: 37.7749, lng: -122.4194},
+      markers: [{
+        position: {lat: 10.0, lng: 10.0}
+      }, {
+        position: {lat: 11.0, lng: 11.0}
+      }]
+    }
+  }
+}
+</script>
+
+<style>
+  .vue-map-container{
+    width: 500px;
+    height: 500px;
+  }
+</style>

@@ -4,16 +4,17 @@
     <input type='text' class='form-control' placeholder='End Destination:' v-model='dest'>
     <maps
       :data1 = 'src'
-      :data2 = 'dest'>
+      :data2 = 'dest'
+    >
     </maps>
   </div>
 </template>
 
 <script>
-import maps from './maps'
-import axios from 'axios'
-import lodash from 'lodash'
-var _ = lodash
+import maps from './map'
+// import axios from 'axios'
+// import lodash from 'lodash'
+// var _ = lodash
 
 export default {
   components: {
@@ -29,22 +30,25 @@ export default {
     dest: function () {
       if (this.src.length > 0 && this.dest.length > 0) {
         console.log('working')
-        this.findDist()
+        // this.findDist()
       }
     }
   },
   methods: {
-    findDist: _.debounce(function () {
-      axios.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + this.src + '&destinations=' + this.dest + '&key=AIzaSyC-3u_V9XiFNAvMs2qnH5cIao42so_X968')
-        .then(function (response) {
-          console.log(response.data)
-        })
-        .catch(function (error) {
-          if (error) {
-            console.log(error)
-          }
-        })
-    }, 500)
+    init: function () {
+      this.$broadcast('MapsApiLoaded')
+    } // ,
+    // findDist: _.debounce(function () {
+    //   axios.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + this.src + '&destinations=' + this.dest + '&key=AIzaSyC-3u_V9XiFNAvMs2qnH5cIao42so_X968')
+    //     .then(function (response) {
+    //       console.log(response.data)
+    //     })
+    //     .catch(function (error) {
+    //       if (error) {
+    //         console.log(error)
+    //       }
+    //     })
+    // }, 500)
   }
 }
 </script>
