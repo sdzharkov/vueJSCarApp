@@ -11,7 +11,8 @@ const store = new Vuex.Store({
     avgGas: null,
     lists: {
       passengers: []
-            // activeType: null,
+    }
+    // activeType: null,
     // itemsPerPage: 20,
     // items: {/* [id: number]: Item */},
     // users: { [id: string]: User },
@@ -22,7 +23,6 @@ const store = new Vuex.Store({
     //   ask: [],
     //   job: []
     // }
-    }
   },
 
   actions: {
@@ -57,11 +57,10 @@ const store = new Vuex.Store({
     //     : fetchUser(id).then(user => commit('SET_USER', { user }))
     // }
   },
-
   mutations: {
-
     SET_VEHICLE: (state, vehicle) => {
       state.vehicle = vehicle
+      // Vue.set(state, vehicle, vehicle)
     },
     SET_SRC: (state, { src }) => {
       state.src = src

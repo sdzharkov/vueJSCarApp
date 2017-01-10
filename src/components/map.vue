@@ -19,7 +19,6 @@
 // import * as VueGoogleMaps from '../../node_modules/vue2-google-maps'
 // var Vue = require('vue')
 var VueGoogleMaps = require('vue2-google-maps')
-import Vue from 'vue'
 
 Vue.use(VueGoogleMaps, {
   load: {

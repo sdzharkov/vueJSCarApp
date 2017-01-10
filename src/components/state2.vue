@@ -4,8 +4,7 @@
     <input type='text' class='form-control' placeholder='End Destination:' v-model='dest'>
     <maps
       :data1 = 'src'
-      :data2 = 'dest'
-    >
+      :data2 = 'dest'>
     </maps>
   </div>
 </template>
@@ -26,9 +25,6 @@ export default {
       dest: ''
     }
   },
-  // events: {
-
-  // },
   watch: {
     dest: function () {
       if (this.src.length > 0 && this.dest.length > 0) {

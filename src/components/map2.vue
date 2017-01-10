@@ -3,14 +3,6 @@
     <div id="map"></div>
     <div id="right-panel">
     <div>
-    <b>Start:</b>
-    <select id="start">
-      <option value="Halifax, NS">Halifax, NS</option>
-      <option value="Boston, MA">Boston, MA</option>
-      <option value="New York, NY">New York, NY</option>
-      <option value="Miami, FL">Miami, FL</option>
-    </select>
-    <br>
     <b>Waypoints:</b> <br>
     <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
     <select multiple id="waypoints">
@@ -22,15 +14,6 @@
       <option value="calgary, ab">Calgary</option>
       <option value="spokane, wa">Spokane</option>
     </select>
-    <br>
-    <b>End:</b>
-    <select id="end">
-      <option value="Vancouver, BC">Vancouver, BC</option>
-      <option value="Seattle, WA">Seattle, WA</option>
-      <option value="San Francisco, CA">San Francisco, CA</option>
-      <option value="Los Angeles, CA">Los Angeles, CA</option>
-    </select>
-    <br>
       <input type="submit" v-on:click='loadDirections' id="submit">
     </div>
     <div id="directions-panel"></div>
@@ -40,48 +23,10 @@
 
 <script>
   import loadGoogleMapsAPI from 'load-google-maps-api'
-  // function initMap () {
-  //   var directionsService = google.maps.DirectionsService()
-  //   var directionsDisplay = google.maps.DirectionsRenderer()
-  //   var map = new google.maps.Map(document.getElementById('map'), {
-  //     zoom: 6,
-  //     center: {lat: 41.85, lng: -87.65}
-  //   })
-  //   directionsDisplay.setMap(map)
-
-  //   document.getElementById('submit').addEventListener('click', function () {
-  //     calculateAndDisplayRoute(directionsService, directionsDisplay)
-  //   })
-  // }
-  // directionsService.route({
-  //   origin: document.getElementById('start').value,
-  //   destination: document.getElementById('end').value,
-  //   waypoints: waypts,
-  //   optimizeWaypoints: true,
-  //   travelMode: 'DRIVING'
-  // }, function (response, status) {
-  //   if (status === 'OK') {
-  //     directionsDisplay.setDirections(response)
-  //     var route = response.routes[0]
-  //     var summaryPanel = document.getElementById('directions-panel')
-  //     summaryPanel.innerHTML = ''
-  //     // For each route, display summary information.
-  //     for (var i = 0; i < route.legs.length; i++) {
-  //       var routeSegment = i + 1
-  //       summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-  //           '</b><br>'
-  //       summaryPanel.innerHTML += route.legs[i].start_address + ' to '
-  //       summaryPanel.innerHTML += route.legs[i].end_address + '<br>'
-  //       summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>'
-  //     }
-  //   } else {
-  //     window.alert('Directions request failed due to ' + status)
-  //   }
-  // })
   export default {
     props: {
       data1: String,
-      data2: String,
+      data2: String
     },
     data () {
       return {
@@ -91,11 +36,11 @@
     },
     mounted: function () {
       // initMap()
-      loadGoogleMapsAPI({key:'AIzaSyDWqkSWcyfLuSqhWaVGVexdWmIQvDCQQAs'}).then((googleMaps) => {
-        var directionsService = new googleMaps.DirectionsService
-        var directionsDisplay = new googleMaps.DirectionsRenderer
-        this.$set(this,'directionsS', directionsService)
-        this.$set(this,'directionsD', directionsDisplay)
+      loadGoogleMapsAPI({key: 'AIzaSyDWqkSWcyfLuSqhWaVGVexdWmIQvDCQQAs'}).then((googleMaps) => {
+        var directionsService = new googleMaps.DirectionsService()
+        var directionsDisplay = new googleMaps.DirectionsRenderer()
+        this.$set(this, 'directionsS', directionsService)
+        this.$set(this, 'directionsD', directionsDisplay)
         // console.log(directionsDisplay)
         // console.log(directionsService)
         // calculateAndDisplayRoute()
@@ -130,30 +75,30 @@
           }
         }
         directionsService.route({
-        origin: document.getElementById('start').value,
-        destination: document.getElementById('end').value,
-        waypoints: waypts,
-        optimizeWaypoints: true,
-        travelMode: 'DRIVING'
-      }, function (response, status) {
-        if (status === 'OK') {
-          directionsDisplay.setDirections(response)
-          var route = response.routes[0]
-          var summaryPanel = document.getElementById('directions-panel')
-          summaryPanel.innerHTML = ''
-          // For each route, display summary information.
-          for (var i = 0; i < route.legs.length; i++) {
-            var routeSegment = i + 1
-            summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                '</b><br>'
-            summaryPanel.innerHTML += route.legs[i].start_address + ' to '
-            summaryPanel.innerHTML += route.legs[i].end_address + '<br>'
-            summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>'
+          origin: this.data1,
+          destination: this.data2,
+          waypoints: waypts,
+          optimizeWaypoints: true,
+          travelMode: 'DRIVING'
+        }, function (response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response)
+            var route = response.routes[0]
+            var summaryPanel = document.getElementById('directions-panel')
+            summaryPanel.innerHTML = ''
+            // For each route, display summary information.
+            for (var i = 0; i < route.legs.length; i++) {
+              var routeSegment = i + 1
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+                  '</b><br>'
+              summaryPanel.innerHTML += route.legs[i].start_address + ' to '
+              summaryPanel.innerHTML += route.legs[i].end_address + '<br>'
+              summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>'
+            }
+          } else {
+            window.alert('Directions request failed due to ' + status)
           }
-        } else {
-          window.alert('Directions request failed due to ' + status)
-        }
-      })
+        })
       }
     }
   }
