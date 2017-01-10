@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import maps from './map'
+import maps from './map2'
 // import axios from 'axios'
 // import lodash from 'lodash'
 // var _ = lodash
@@ -26,6 +26,9 @@ export default {
       dest: ''
     }
   },
+  // events: {
+
+  // },
   watch: {
     dest: function () {
       if (this.src.length > 0 && this.dest.length > 0) {

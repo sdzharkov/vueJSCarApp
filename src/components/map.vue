@@ -1,7 +1,9 @@
 <template>
   <gmap-map 
     :center="center"
-    :zoom="7">
+    :zoom="7"
+    :style="{ width: '500px', height: '500px'}"
+    >
     <gmap-marker 
       v-for="m in markers"
       :position="m.position"
@@ -22,9 +24,12 @@ import Vue from 'vue'
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyBMSi1KFmkp-dto-D_21QPPkDvfaeE7l0w'
-    // libraries: 'places', //// If you need to use place input
+    // libraries: 'directions'
   }
 })
+
+// var directionsDisplay = google.maps.DirectionsRenderer()
+// console.log(directionsDisplay)
 
 export default {
   props: {
@@ -44,9 +49,3 @@ export default {
 }
 </script>
 
-<style>
-  .vue-map-container{
-    width: 500px;
-    height: 500px;
-  }
-</style>
