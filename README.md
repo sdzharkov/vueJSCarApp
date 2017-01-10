@@ -1,6 +1,6 @@
 # car-state
 
-> A Vue.js project
+> This is the front-end for the Trip Split project. To run, you must run the dependency found below while also running the Django Trip Split repository for the backend. 
 
 ## Build Setup
 
@@ -15,5 +15,5 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
 # vueJSCarApp
