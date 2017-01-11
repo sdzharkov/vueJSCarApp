@@ -1,22 +1,12 @@
 <template>
-  <div id="yes">
+  <div id="map_section">
     <div id="map"></div>
     <div id="right-panel">
-    <div>
-    <b>Waypoints:</b> <br>
-    <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br>
-    <select multiple id="waypoints">
-      <option value="montreal, quebec">Montreal, QBC</option>
-      <option value="toronto, ont">Toronto, ONT</option>
-      <option value="chicago, il">Chicago</option>
-      <option value="winnipeg, mb">Winnipeg</option>
-      <option value="fargo, nd">Fargo</option>
-      <option value="calgary, ab">Calgary</option>
-      <option value="spokane, wa">Spokane</option>
-    </select>
+      <div id="mid-list" v-for="(city,index) in data3">
+        <li>{{ city }}</li>
+      </div>
       <input type="submit" v-on:click='loadDirections' id="submit">
-    </div>
-    <div id="directions-panel"></div>
+      <div id="directions-panel"></div>
     </div>
   </div>
 </template>
@@ -26,7 +16,8 @@
   export default {
     props: {
       data1: String,
-      data2: String
+      data2: String,
+      data3: Array
     },
     data () {
       return {
@@ -41,18 +32,13 @@
         var directionsDisplay = new googleMaps.DirectionsRenderer()
         this.$set(this, 'directionsS', directionsService)
         this.$set(this, 'directionsD', directionsDisplay)
-        // console.log(directionsDisplay)
-        // console.log(directionsService)
-        // calculateAndDisplayRoute()
+
         var map = new googleMaps.Map(document.getElementById('map'), {
           zoom: 6,
-          center: {lat: 41.85, lng: -87.65}
+          center: {lat: 37.7749, lng: -122.4194}
         })
         directionsDisplay.setMap(map)
 
-        // document.getElementById('submit').addEventListener('click', function () {
-        //   calculateAndDisplayRoute(directionsService, directionsDisplay)
-        // })
         console.log(googleMaps) // => Object { Animation: Object}
       }).catch((err) => {
         console.error(err)
@@ -65,14 +51,21 @@
       },
       calculateAndDisplayRoute: function (directionsService, directionsDisplay) {
         var waypts = []
-        var checkboxArray = document.getElementById('waypoints')
-        for (var i = 0; i < checkboxArray.length; i++) {
-          if (checkboxArray.options[i].selected) {
-            waypts.push({
-              location: checkboxArray[i].value,
-              stopover: true
-            })
-          }
+        console.log(this.data3)
+        // var checkboxArray = document.getElementById('waypoints')
+        // for (var i = 0; i < checkboxArray.length; i++) {
+        //   if (checkboxArray.options[i].selected) {
+        //     waypts.push({
+        //       location: checkboxArray[i].value,
+        //       stopover: true
+        //     })
+        //   }
+        // }
+        for (var i = 0; i < this.data3.length; i++) {
+          waypts.push({
+            location: this.data3[i],
+            stopover: true
+          })
         }
         directionsService.route({
           origin: this.data1,
@@ -128,14 +121,14 @@
     padding: 0;
   }
   #map {
-    height: 500px;
+    height: 400px;
     float: left;
-    width: 500px;
+    width: 400px;
   }
   #right-panel {
     margin: 20px;
     border-width: 2px;
-    width: 20%;
+    width: 25%;
     height: 400px;
     float: left;
     text-align: left;
@@ -145,6 +138,10 @@
     margin-top: 10px;
     background-color: #FFEE77;
     padding: 10px;
+  }
+  #map_section {
+    display: inline-block;
+    width: 70%;
   }
 </style>
 

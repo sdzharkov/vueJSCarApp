@@ -2,9 +2,11 @@
   <div class="state2">
     <input type='text' class='form-control' placeholder='Start Destination:' v-model='src'>
     <input type='text' class='form-control' placeholder='End Destination:' v-model='dest'>
+    <input type="text" placeholder="Enter destinations in between:" v-model='mid' v-on:keyup.enter='submit_mid'>
     <maps
       :data1 = 'src'
-      :data2 = 'dest'>
+      :data2 = 'dest'
+      :data3 = 'locations'>
     </maps>
   </div>
 </template>
@@ -22,7 +24,9 @@ export default {
   data () {
     return {
       src: '',
-      dest: ''
+      dest: '',
+      mid: '',
+      locations: []
     }
   },
   watch: {
@@ -32,23 +36,13 @@ export default {
         // this.findDist()
       }
     }
-  } // ,
-  // methods: {
-  //   init: function () {
-  //     this.$broadcast('MapsApiLoaded')
-  //   }  ,
-    // findDist: _.debounce(function () {
-    //   axios.get('https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=' + this.src + '&destinations=' + this.dest + '&key=AIzaSyC-3u_V9XiFNAvMs2qnH5cIao42so_X968')
-    //     .then(function (response) {
-    //       console.log(response.data)
-    //     })
-    //     .catch(function (error) {
-    //       if (error) {
-    //         console.log(error)
-    //       }
-    //     })
-    // }, 500)
-  // }
+  },
+  methods: {
+    submit_mid: function () {
+      this.locations.push(this.mid)
+      this.$set(this, 'mid', '')
+    }
+  }
 }
 </script>
 

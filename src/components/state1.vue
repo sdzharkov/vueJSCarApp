@@ -8,7 +8,6 @@
       :data="cars"
       :columns="gridColumns"
       :filter-key="searchQuery">
-
     </demo-grid>
   </div>
 </template>
@@ -63,11 +62,7 @@ export default {
         })
     }, 500),
     clearCar: function () {
-      // inst.$set(inst, 'cars', [])
       this.$set(this, 'cars', [])
-      // for (var i = 0; i < this.cars.length * 2; i++) {
-      //   this.cars.splice(this.cars[i], 1)
-      // }
     }
   }
 }
