@@ -2,11 +2,9 @@
   <div class="state2">
     <input type='text' class='form-control' placeholder='Start Destination:' v-model='src'>
     <input type='text' class='form-control' placeholder='End Destination:' v-model='dest'>
-    <input type="text" placeholder="Enter destinations in between:" v-model='mid' v-on:keyup.enter='submit_mid'>
     <maps
       :data1 = 'src'
-      :data2 = 'dest'
-      :data3 = 'locations'>
+      :data2 = 'dest'>
     </maps>
   </div>
 </template>
@@ -24,9 +22,7 @@ export default {
   data () {
     return {
       src: '',
-      dest: '',
-      mid: '',
-      locations: []
+      dest: ''
     }
   },
   watch: {
@@ -35,12 +31,6 @@ export default {
         console.log('working')
         // this.findDist()
       }
-    }
-  },
-  methods: {
-    submit_mid: function () {
-      this.locations.push(this.mid)
-      this.$set(this, 'mid', '')
     }
   }
 }

@@ -2,8 +2,10 @@
   <div id="map_section">
     <div id="map"></div>
     <div id="right-panel">
-      <div id="mid-list" v-for="(city,index) in data3">
+      <input type="text" placeholder="Enter destinations in between:" v-model='mid' v-on:keyup.enter='submit_mid'>
+      <div id="mid-list" v-for="(city,index) in locations">
         <li>{{ city }}</li>
+        <button class="destroy" @click="remove_mid(index)"></button>
       </div>
       <input type="submit" v-on:click='loadDirections' id="submit">
       <div id="directions-panel"></div>
@@ -16,11 +18,12 @@
   export default {
     props: {
       data1: String,
-      data2: String,
-      data3: Array
+      data2: String
     },
     data () {
       return {
+        mid: null,
+        locations: [],
         directionsS: null,
         directionsD: null
       }
@@ -45,25 +48,23 @@
       })
     },
     methods: {
+      submit_mid: function () {
+        this.locations.push(this.mid)
+        this.$set(this, 'mid', '')
+      },
+      remove_mid: function (index) {
+        this.locations.splice(index, 1)
+      },
       loadDirections: function () {
         console.log('yay')
         this.calculateAndDisplayRoute(this.directionsS, this.directionsD)
       },
       calculateAndDisplayRoute: function (directionsService, directionsDisplay) {
         var waypts = []
-        console.log(this.data3)
-        // var checkboxArray = document.getElementById('waypoints')
-        // for (var i = 0; i < checkboxArray.length; i++) {
-        //   if (checkboxArray.options[i].selected) {
-        //     waypts.push({
-        //       location: checkboxArray[i].value,
-        //       stopover: true
-        //     })
-        //   }
-        // }
-        for (var i = 0; i < this.data3.length; i++) {
+
+        for (var i = 0; i < this.locations.length; i++) {
           waypts.push({
-            location: this.data3[i],
+            location: this.locations[i],
             stopover: true
           })
         }
@@ -141,7 +142,7 @@
   }
   #map_section {
     display: inline-block;
-    width: 70%;
+    width: 80%;
   }
 </style>
 

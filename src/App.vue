@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <div class="Center-Container is-Inline">
-      <a class="navigation navigation-prev " aria-label="Previous page: State" value="v-a" id="a" name="view" v-on:click="view='state-1'">
+      <a class="navigation navigation-prev " aria-label="Previous page: State" value="v-a" id="a" name="view" v-on:click="changeViewLeft">
           <i class="fa fa-angle-left"></i>
       </a>
       <div class="Center-Block">
           <transition name="component-fade" mode="out-in">
-            <component v-bind:is="view"></component>
+            <keep-alive>
+              <component v-bind:is="view"></component>
+            <keep-alive>
           </transition>
       </div>
-      <a class="navigation navigation-next " aria-label="Next page: Mutations" style="margin-right: 0px;" value="v-b" id="b" name="view" v-on:click="view='state-2'">
+      <a class="navigation navigation-next " aria-label="Next page: Mutations" style="margin-right: 0px;" value="v-b" id="b" name="view" v-on:click="changeViewRight">
           <i class="fa fa-angle-right"></i>
       </a>
     </div>
@@ -20,6 +21,7 @@
 <script>
 import state1 from './components/state1'
 import state2 from './components/state2'
+import state3 from './components/state3'
 
 export default {
   name: 'app',
@@ -37,6 +39,24 @@ export default {
     'state-2': {
       template: '<state2>',
       components: { state2 }
+    },
+    'state-3': {
+      template: '<state3>',
+      components: { state3 }
+    }
+  },
+  methods: {
+    changeViewRight: function () {
+      if (parseInt(this.view.slice(-1)) <= 4) {
+        var x = parseInt(this.view.slice(-1))
+        this.view = 'state-' + (x + 1).toString()
+      }
+    },
+    changeViewLeft: function () {
+      if (parseInt(this.view.slice(-1)) > 1) {
+        var x = parseInt(this.view.slice(-1))
+        this.view = 'state-' + (x - 1).toString()
+      }
     }
   }
 }

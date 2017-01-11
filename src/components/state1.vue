@@ -3,7 +3,6 @@
     <input type='text' class='form-control' placeholder='Enter Year:' v-model='car_year'>
     <input type='text' class='form-control' placeholder='Enter Make:' v-model='car_make'>
     <input type='text' class='form-control' placeholder='Enter Model:' v-model='car_model'>
-    <button> Next State </button>
     <demo-grid
       :data="cars"
       :columns="gridColumns"
