@@ -4,6 +4,7 @@
       <a class="navigation navigation-prev " aria-label="Previous page: State" value="v-a" id="a" name="view" v-on:click="changeViewLeft">
           <i class="fa fa-angle-left"></i>
       </a>
+      <timeline></timeline>
       <div class="Center-Block">
           <transition name="component-fade" mode="out-in">
             <keep-alive>
@@ -22,6 +23,7 @@
 import state1 from './components/state1'
 import state2 from './components/state2'
 import state3 from './components/state3'
+import timeline from './components/timeline5'
 
 export default {
   name: 'app',
@@ -32,6 +34,7 @@ export default {
   },
   components: {
     state1,
+    timeline,
     'state-1': {
       template: '<state1/>',
       components: { state1 }

@@ -6,8 +6,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     vehicle: null,
-    src: null,
-    dest: null,
+    route: null,
     avgGas: null,
     lists: {
       passengers: []
@@ -62,11 +61,8 @@ const store = new Vuex.Store({
       state.vehicle = vehicle
       // Vue.set(state, vehicle, vehicle)
     },
-    SET_SRC: (state, { src }) => {
-      state.src = src
-    },
-    SET_DEST: (state, { dest }) => {
-      state.dest = dest
+    SET_ROUTE: (state, route) => {
+      state.route = route
     },
     SET_AVG_GAS: (state, { avgGas }) => {
       state.avg_gas = avgGas

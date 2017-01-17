@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import maps from './map2'
+import maps from './map'
 // import axios from 'axios'
 // import lodash from 'lodash'
 // var _ = lodash
