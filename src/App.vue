@@ -23,7 +23,7 @@
 import state1 from './components/state1'
 import state2 from './components/state2'
 import state3 from './components/state3'
-import timeline from './components/timeline5'
+import timeline from './components/timeline'
 
 export default {
   name: 'app',

@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    vehicle: null,
+    vehicle: '',
     route: null,
     avgGas: null,
     lists: {
@@ -96,6 +96,18 @@ const store = new Vuex.Store({
   },
 
   getters: {
+    getCar: state => {
+      if (state.vehicle === '') {
+        return 'Your Car'
+      }
+      var s = ''
+      s += state.vehicle['car_make']
+      s += ' '
+      s += state.vehicle['car_model']
+      s += ' '
+      s += state.vehicle['car_year']
+      return s
+    }
     // ids of the items that should be currently displayed based on
     // current list type and current pagination
     // activeIds (state) {
