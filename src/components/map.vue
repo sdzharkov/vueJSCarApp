@@ -24,6 +24,7 @@
       return {
         mid: null,
         locations: [],
+        route: null,
         directionsS: null,
         directionsD: null
       }
@@ -40,15 +41,16 @@
           zoom: 6,
           center: {lat: 37.7749, lng: -122.4194}
         })
-        directionsDisplay.setMap(map)
+        this.directionsD.setMap(map)
 
-        console.log(googleMaps) // => Object { Animation: Object}
+        // console.log(googleMaps) // => Object { Animation: Object}
       }).catch((err) => {
         console.error(err)
       })
     },
     methods: {
       setRoute: function (ITEM) {
+        console.log('here')
         this.$store.commit('SET_ROUTE', ITEM)
       },
       submit_mid: function () {
@@ -59,10 +61,9 @@
         this.locations.splice(index, 1)
       },
       loadDirections: function () {
-        console.log('yay')
         this.calculateAndDisplayRoute(this.directionsS, this.directionsD)
       },
-      calculateAndDisplayRoute: function (directionsService, directionsDisplay) {
+      calculateAndDisplayRoute: async function (directionsService, directionsDisplay) {
         var waypts = []
 
         for (var i = 0; i < this.locations.length; i++) {
@@ -71,13 +72,18 @@
             stopover: true
           })
         }
-        directionsService.route({
-          origin: this.data1,
-          destination: this.data2,
+        var origin1 = this.data1
+        var destination1 = this.data2
+
+        var input = {
+          origin: origin1,
+          destination: destination1,
           waypoints: waypts,
           optimizeWaypoints: true,
           travelMode: 'DRIVING'
-        }, function (response, status) {
+        }
+
+        this.directionsS.route(input, function (response, status) {
           if (status === 'OK') {
             directionsDisplay.setDirections(response)
             var route = response.routes[0]
@@ -86,17 +92,17 @@
             // For each route, display summary information.
             for (var i = 0; i < route.legs.length; i++) {
               var routeSegment = i + 1
-              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                  '</b><br>'
+              summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment + '</b><br>'
               summaryPanel.innerHTML += route.legs[i].start_address + ' to '
               summaryPanel.innerHTML += route.legs[i].end_address + '<br>'
               summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>'
             }
+            return route
           } else {
             window.alert('Directions request failed due to ' + status)
+            return -1
           }
-          this.$setRoute(route)
-        })
+        }).then((route) => { console.log(route) })
       }
     }
   }

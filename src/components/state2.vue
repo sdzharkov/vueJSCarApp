@@ -21,8 +21,8 @@ export default {
   },
   data () {
     return {
-      src: '',
-      dest: ''
+      src: 'SF',
+      dest: 'Davis'
     }
   },
   watch: {

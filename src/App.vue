@@ -49,6 +49,9 @@ export default {
     }
   },
   methods: {
+    changeView: function (index) {
+      this.view = 'state-' + (index + 1).toString()
+    },
     changeViewRight: function () {
       if (parseInt(this.view.slice(-1)) <= 4) {
         var x = parseInt(this.view.slice(-1))

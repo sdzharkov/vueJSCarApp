@@ -10,7 +10,6 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "@google/maps": "^0.3.1",
     "autoprefixer": "^6.6.1",
     "eslint": "^3.13.1",
     "eslint-friendly-formatter": "^2.0.7",
@@ -23,7 +22,6 @@
     "vue-template-compiler": "^2.1.8",
     "vue2-google-maps": "^0.5.0",
     "vuex": "^2.1.1",
-    "vux": "^2.0.12",
     "webpack-hot-middleware": "^2.15.0"
   },
   "devDependencies": {

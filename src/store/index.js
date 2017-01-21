@@ -101,12 +101,15 @@ const store = new Vuex.Store({
         return 'Your Car'
       }
       var s = ''
+      s += state.vehicle['car_year']
+      s += ' '
       s += state.vehicle['car_make']
       s += ' '
       s += state.vehicle['car_model']
-      s += ' '
-      s += state.vehicle['car_year']
       return s
+    },
+    getRoute: state => {
+      return state.route
     }
     // ids of the items that should be currently displayed based on
     // current list type and current pagination
