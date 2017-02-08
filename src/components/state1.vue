@@ -1,8 +1,8 @@
 <template>
   <div class='state1'>
-    <input type='text' class='form-control' placeholder='Enter Year:' v-model='car_year'>
-    <input type='text' class='form-control' placeholder='Enter Make:' v-model='car_make'>
-    <input type='text' class='form-control' placeholder='Enter Model:' v-model='car_model'>
+    <UIInput type='text' class='form-control' placeholder='Enter Year:' v-model='car_year'></UIInput>
+    <UIInput type='text' class='form-control' placeholder='Enter Make:' v-model='car_make'></UIInput>
+    <UIInput type='text' class='form-control' placeholder='Enter Model:' v-model='car_model'></UIInput>
     <demo-grid
       :data="cars"
       :columns="gridColumns"
@@ -16,11 +16,15 @@ import axios from 'axios'
 import lodash from 'lodash'
 import demoGrid from './demo-grid'
 var _ = lodash
+import { Input } from 'element-ui'
+
+var UIInput = Input
 
 export default {
   name: 'state1',
   components: {
-    demoGrid
+    demoGrid,
+    UIInput
   },
   data () {
     return {
@@ -69,6 +73,9 @@ export default {
 
 <!-- Add 'scoped' attribute to limit CSS to this component only -->
 <style scoped>
+.el-input {
+  width: 30%;
+}
 /*h1, h2 {
   font-weight: normal;
 }

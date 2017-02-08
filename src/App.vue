@@ -1,22 +1,31 @@
 <template>
   <div id="app">
-    <div class="Center-Container is-Inline">
-      <a class="navigation navigation-prev " aria-label="Previous page: State" value="v-a" id="a" name="view" v-on:click="changeViewLeft">
-          <i class="fa fa-angle-left"></i>
-      </a>
-      <timeline></timeline>
-      <div class="Center-Block">
-          <transition name="component-fade" mode="out-in">
-            <keep-alive>
-              <component v-bind:is="view"></component>
-            <keep-alive>
-          </transition>
-      </div>
-      <a class="navigation navigation-next " aria-label="Next page: Mutations" style="margin-right: 0px;" value="v-b" id="b" name="view" v-on:click="changeViewRight">
-          <i class="fa fa-angle-right"></i>
-      </a>
-    </div>
-  </div>
+<!--     <div class="Center-Container is-Inline">
+ -->      
+    <UIRow class="mainRow">
+      <UIColumn :span="2">
+        <a class="navigation navigation-prev " aria-label="Previous page: State" value="v-a" id="a" name="view" v-on:click="changeViewLeft">
+            <i class="fa fa-angle-left"></i>
+        </a>
+      </UIColumn>
+      <UIColumn :span="20">
+        <timeline></timeline>
+        <div class="Center-Block">
+            <transition name="component-fade" mode="out-in">
+              <keep-alive>
+                <component v-bind:is="view"></component>
+              </keep-alive>
+            </transition>
+        </div>
+      </UIColumn>
+      <UIColumn :span="2">
+        <a class="navigation navigation-next " aria-label="Next page: Mutations" style="margin-right: 0px;" value="v-b" id="b" name="view" v-on:click="changeViewRight">
+            <i class="fa fa-angle-right"></i>
+        </a>
+      </UIColumn>
+    </UIRow>
+<!--     </div>
+ -->  </div>
 </template>
 
 <script>
@@ -24,6 +33,10 @@ import state1 from './components/state1'
 import state2 from './components/state2'
 import state3 from './components/state3'
 import timeline from './components/timeline'
+import { Row, Col } from 'element-ui'
+
+var UIRow = Row
+var UIColumn = Col
 
 export default {
   name: 'app',
@@ -33,6 +46,8 @@ export default {
     }
   },
   components: {
+    UIRow,
+    UIColumn,
     state1,
     timeline,
     'state-1': {
@@ -69,11 +84,18 @@ export default {
 </script>
 
 <style>
+.mainRow {
+  display: flex;
+}
 .navigation.navigation-prev {
   left: 0;
+  padding: 0;
+  margin: 0;
 }
 .navigation.navigation-next {
   right: 0;
+  padding: 0;
+  margin: 0;
 }
 .fa {
     display: inline-block;
@@ -108,6 +130,7 @@ export default {
     display: flex;
     justify-content: center;
     align-content: center;
+    align-items: center;
     flex-direction: column;
     font-size: 40px;
     color: #ccc;
@@ -127,6 +150,8 @@ a {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  width: 100%;
+  height: 100%;
   .Center-Container.is-Flexbox {
     display: -webkit-box;
     display: -moz-box;

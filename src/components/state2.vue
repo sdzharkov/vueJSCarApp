@@ -1,23 +1,27 @@
 <template>
   <div class="state2">
-    <input type='text' class='form-control' placeholder='Start Destination:' v-model='src'>
-    <input type='text' class='form-control' placeholder='End Destination:' v-model='dest'>
-    <maps
-      :data1 = 'src'
-      :data2 = 'dest'>
-    </maps>
+<!--     <UIInput placeholder="Please input" class='form-control' size='small' v-model='src'></UIInput>
+    <UIInput type='text' class='form-control' placeholder='End Destination:' size='small' v-model='dest'></UIInput> -->
+    <maps></maps>
   </div>
 </template>
 
 <script>
 import maps from './map'
+import { Button, Select, Input } from 'element-ui'
+
 // import axios from 'axios'
 // import lodash from 'lodash'
-// var _ = lodash
+var UIButton = Button
+var UISelect = Select
+var UIInput = Input
 
 export default {
   components: {
-    maps
+    maps,
+    UIButton,
+    UISelect,
+    UIInput
   },
   data () {
     return {
@@ -31,6 +35,11 @@ export default {
         console.log('working')
         // this.findDist()
       }
+    }
+  },
+  methods: {
+    setSrc: function (ITEM) {
+      this.$store.commit('SET_SRC', ITEM)
     }
   }
 }
